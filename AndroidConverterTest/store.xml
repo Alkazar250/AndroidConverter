@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tests>
+    <test>
+        <name>Simple test #1</name>
+        <comment>Simple positive test</comment>
+        <author>Alkazar</author>
+        <data>1</data>
+        <result>0.2777777777777778</result>
+    </test>
+    <test>
+        <name>Simple test #2</name>
+        <comment>Simple positive test</comment>
+        <author>Alkazar</author>
+        <data>10</data>
+        <result>2.7777777777777777</result>
+    </test>
+    <test>
+        <name>Invalid data test</name>
+        <comment>Expected error message</comment>
+        <author>Alkazar</author>
+        <data> </data>
+        <result>Error during convertion</result>
+    </test>
+    <test>
+        <name>Limit value</name>
+        <comment>Testing the result at limit value</comment>
+        <author>Alkazar</author>
+        <data>0</data>
+        <result>0.0</result>
+    </test>
+    <test>
+        <name>Accuracy test</name>
+        <comment>Checking possibility of rounding error</comment>
+        <author>Alkazar</author>
+        <data>1.000000000000001</data>
+        <result>0.2777777777777781</result>
+    </test>
+</tests>
