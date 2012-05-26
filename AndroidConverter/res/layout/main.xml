@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:orientation="vertical"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   android:padding="12dp">
+   <TextView 
+     android:id="@+id/textKmPerHour"
+     android:layout_width="wrap_content" 
+     android:layout_height="wrap_content" android:text="Kmh"/>
+   <EditText 
+     android:layout_height="wrap_content" 
+     android:layout_width="match_parent"
+     android:inputType="numberDecimal"
+     android:numeric="decimal" android:id="@+id/editKmPerHour">
+     <requestFocus></requestFocus>
+   </EditText>
+   <Button 
+   	 android:layout_height="wrap_content" 
+   	 android:layout_width="wrap_content" 
+   	 android:clickable="true" 
+   	 android:id="@+id/ConvToMs" android:text="Convert To Ms" android:onClick="@android:string/ok"></Button>
+   <TextView 
+   	 android:paddingTop="4dp" 
+   	 android:id="@+id/textMetersPerSec" 
+   	 android:layout_height="wrap_content" 
+   	 android:layout_width="wrap_content" android:text="Ms"></TextView>
+   <EditText 
+   	 android:layout_height="wrap_content" 
+   	 android:inputType="numberDecimal" 
+   	 android:layout_width="match_parent" 
+   	 android:id="@+id/editMetersPerSec" 
+   	 android:numeric="decimal"/>
+   <Button 
+   	 android:layout_height="wrap_content" 
+   	 android:layout_width="wrap_content" 
+   	 android:clickable="true" 
+   	 android:id="@+id/ConvToKmh" android:text="Convert To Km/h" android:onClick="@android:string/ok"></Button>
+</LinearLayout>
