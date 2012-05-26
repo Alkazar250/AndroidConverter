@@ -1,0 +1,390 @@
+<html>
+<head>
+<title>Lint Report</title>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto"><link rel="stylesheet" type="text/css" href="report_files/hololike.css">
+<script language="javascript"> 
+<!--
+function reveal(id) {
+if (document.getElementById) {
+document.getElementById(id).style.display = 'block';
+document.getElementById(id+'Link').style.display = 'none';
+}
+}
+//--> 
+</script>
+</head>
+<body>
+<h1>Lint Report<div class="titleSeparator"></div>
+</h1>
+Check performed at Sat May 26 19:34:23 EEST 2012.<br/>1 errors and 14 warnings found:<br/><br/><table class="overview">
+<tr><td></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-error.png" />
+<a href="#OnClick">OnClick</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#ManifestOrder">ManifestOrder</a>
+</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#Deprecated">Deprecated</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#UsesMinSdkAttributes">UsesMinSdkAttributes</a>
+</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#Performance">Performance</a>
+</td></tr>
+<tr>
+<td class="countColumn">4</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#UseValueOf">UseValueOf</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#UnusedResources">UnusedResources</a>
+</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#Usability:Icons">Usability:Icons</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#IconMissingDensityFolder">IconMissingDensityFolder</a>
+</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
+</td></tr>
+<tr>
+<td class="countColumn">4</td><td class="issueColumn"><img border="0" align="top" src="report_files/lint-warning.png" />
+<a href="#HardcodedText">HardcodedText</a>
+</td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (5)</a>
+</td></tr></table>
+<br/>
+<a name="Correctness"></a>
+<div class="category">Correctness<div class="categorySeparator"></div>
+</div>
+<a name="OnClick"></a>
+<div class="issue">
+<div class="id">OnClick<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:38</span>: <span class="message">Corresponding method handler 'public void @android:string/ok(android.view.View)' not found</span><br /><pre class="errorlines">
+<span class="lineno">  35</span>    	 android:layout_height="wrap_content" 
+<span class="lineno">  36</span>    	 android:layout_width="wrap_content" 
+<span class="lineno">  37</span>    	 android:clickable="true" 
+<span class="lineno">  38</span>    	 android:id="@+id/ConvToKmh" android:text="Convert To Km/h" <span class="errorspan">android:onClick="@android:string/ok">&lt;/Button></span>
+<span class="lineno">  39</span> &lt;/LinearLayout>
+
+</pre>
+</div>
+<div class="metadata">Priority: 10 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="error">Error</span><div class="summary">
+Explanation: Ensures that onClick attribute values refer to real methods.</div>
+<div class="explanation">
+The onClick attribute value should be the name of a method in this View's context to invoke when the view is clicked. This name must correspond to a public method that takes exactly one parameter of type View.<br/><br/>Must be a string value, using '\;' to escape characters such as '\n' or '\uxxxx' for a unicode character.
+</div>
+<br/>To suppress this error, use the issue id "OnClick" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="ManifestOrder"></a>
+<div class="issue">
+<div class="id">ManifestOrder<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/AndroidManifest.xml">AndroidManifest.xml</a>:18</span>: <span class="message">&lt;uses-permission> tag appears after &lt;application> tag</span><br /><pre class="errorlines">
+<span class="lineno">  15</span>         &lt;/activity>
+<span class="lineno">  16</span> 
+<span class="lineno">  17</span>     &lt;/application>
+<span class="lineno">  18</span>     <span class="errorspan">&lt;uses-permission android:name="android.permission.INTERNET"/></span>
+<span class="lineno">  19</span> &lt;/manifest>
+
+</pre>
+</div>
+<div class="metadata">Priority: 5 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Checks for manifest problems like <uses-sdk> after the <application> tag.</div>
+<div class="explanation">
+The &lt;application> tag should appear after the elements which declare which version you need, which features you need, which libraries you need, and so on. In the past there have been subtle bugs (such as themes not getting applied correctly) when the &lt;application> tag appears before some of these other elements, so it's best to order your manifest in the logical dependency order.
+</div>
+<br/>To suppress this error, use the issue id "ManifestOrder" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="Deprecated"></a>
+<div class="issue">
+<div class="id">Deprecated<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:15</span>: <span class="message">android:numeric is deprecated: Use inputType instead</span><br /><pre class="errorlines">
+<span class="lineno">  12</span>      android:layout_height="wrap_content" 
+<span class="lineno">  13</span>      android:layout_width="match_parent"
+<span class="lineno">  14</span>      android:inputType="numberDecimal"
+<span class="lineno">  15</span>      <span class="errorspan">android:numeric="decimal" android:id="@+id/editKmPerHour"></span>
+<span class="lineno">  16</span>      &lt;requestFocus>&lt;/requestFocus>
+<span class="lineno">  17</span>    &lt;/EditText>
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:33</span>: <span class="message">android:numeric is deprecated: Use inputType instead</span><br /><pre class="errorlines">
+<span class="lineno">  30</span>    	 android:inputType="numberDecimal" 
+<span class="lineno">  31</span>    	 android:layout_width="match_parent" 
+<span class="lineno">  32</span>    	 android:id="@+id/editMetersPerSec" 
+<span class="lineno">  33</span>    	 <span class="errorspan">android:numeric="decimal"/></span>
+<span class="lineno">  34</span>    &lt;Button 
+<span class="lineno">  35</span>    	 android:layout_height="wrap_content" 
+</pre>
+</div>
+<div class="metadata">Priority: 2 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for usages of deprecated layouts, attributes, and so on.</div>
+<div class="explanation">
+Deprecated views, attributes and so on are deprecated because there is a better way to do something. Do it that new way. You've been warned.
+</div>
+<br/>To suppress this error, use the issue id "Deprecated" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="UsesMinSdkAttributes"></a>
+<div class="issue">
+<div class="id">UsesMinSdkAttributes<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/AndroidManifest.xml">AndroidManifest.xml</a>:6</span>: <span class="message">&lt;uses-sdk> tag should specify a target API level (the highest verified version; when running on later versions, compatibility behaviors may be enabled) with android:targetSdkVersion="?"</span><br /><pre class="errorlines">
+<span class="lineno">   3</span>       package="com.android.converter"
+<span class="lineno">   4</span>       android:versionCode="1"
+<span class="lineno">   5</span>       android:versionName="1.0">
+<span class="lineno">   6</span>     <span class="errorspan">&lt;uses-sdk android:minSdkVersion="8" /></span>
+<span class="lineno">   7</span> 
+<span class="lineno">   8</span>     &lt;application android:icon="@drawable/icon" android:label="@string/app_name">
+</pre>
+</div>
+<div class="metadata">Priority: 2 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Checks that the minimum SDK and target SDK attributes are defined.</div>
+<div class="explanation">
+The manifest should contain a &lt;uses-sdk> element which defines the minimum minimum API Level required for the application to run, as well as the target version (the highest API level you have tested the version for.)
+</div>
+<br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html">http://developer.android.com/guide/topics/manifest/uses-sdk-element.html</a></div>
+<br/>To suppress this error, use the issue id "UsesMinSdkAttributes" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+<a name="Performance"></a>
+<div class="category">Performance<div class="categorySeparator"></div>
+</div>
+<a name="UseValueOf"></a>
+<div class="issue">
+<div class="id">UseValueOf<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/src%5Ccom%5Candroid%5Cconverter%5CAndroidConverterActivity.java">src\com\android\converter\AndroidConverterActivity.java</a>:40</span>: <span class="message">Use Double.valueOf(meterPerSec) instead</span><br /><pre class="errorlines">
+<span class="lineno">  37</span>             		try {
+<span class="lineno">  38</span>                         double kmPerHour = Double.parseDouble(editKmPerHour.getText().toString());
+<span class="lineno">  39</span>                         double meterPerSec = kmPerHour * 0.2777777777777778;
+<span class="lineno">  40</span>                         editMeterPerSec.setText(<span class="errorspan">new Double(meterPerSec).toString());</span>
+<span class="lineno">  41</span> 	                } catch (NumberFormatException e) {
+<span class="lineno">  42</span> 	                        editMeterPerSec.setText(errorMsg);
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/src%5Ccom%5Candroid%5Cconverter%5CAndroidConverterActivity.java">src\com\android\converter\AndroidConverterActivity.java</a>:54</span>: <span class="message">Use Double.valueOf(kmPerHour) instead</span><br /><pre class="errorlines">
+<span class="lineno">  51</span>             		try {
+<span class="lineno">  52</span>                         double meterPerSec = Double.parseDouble(editMeterPerSec.getText().toString());
+<span class="lineno">  53</span>                         double kmPerHour = meterPerSec * 3.6;
+<span class="lineno">  54</span>                         editKmPerHour.setText(<span class="errorspan">new Double(kmPerHour).toString());</span>
+<span class="lineno">  55</span>             		} catch (NumberFormatException e) {
+<span class="lineno">  56</span>                         editKmPerHour.setText(errorMsg);
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/src%5Ccom%5Candroid%5Cconverter%5CAndroidConverterActivity.java">src\com\android\converter\AndroidConverterActivity.java</a>:69</span>: <span class="message">Use Double.valueOf(meterPerSec) instead</span><br /><pre class="errorlines">
+<span class="lineno">  66</span>                                     try {
+<span class="lineno">  67</span>                                             double kmPerHour = Double.parseDouble(editKmPerHour.getText().toString());
+<span class="lineno">  68</span>                                             double meterPerSec = kmPerHour * 0.2777777777777778;
+<span class="lineno">  69</span>                                             editMeterPerSec.setText(<span class="errorspan">new Double(meterPerSec).toString());</span>
+<span class="lineno">  70</span>                                     } catch (NumberFormatException e) {
+<span class="lineno">  71</span>                                             editMeterPerSec.setText(errorMsg);
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/src%5Ccom%5Candroid%5Cconverter%5CAndroidConverterActivity.java">src\com\android\converter\AndroidConverterActivity.java</a>:88</span>: <span class="message">Use Double.valueOf(kmPerHour) instead</span><br /><pre class="errorlines">
+<span class="lineno">  85</span>                                     try {
+<span class="lineno">  86</span>                                             double meterPerSec = Double.parseDouble(editMeterPerSec.getText().toString());
+<span class="lineno">  87</span>                                             double kmPerHour = meterPerSec * 3.6;
+<span class="lineno">  88</span>                                             editKmPerHour.setText(<span class="errorspan">new Double(kmPerHour).toString());</span>
+<span class="lineno">  89</span>                                     } catch (NumberFormatException e) {
+<span class="lineno">  90</span>                                             editKmPerHour.setText(errorMsg);
+</pre>
+</div>
+<div class="metadata">Priority: 4 / 10<br/>
+Category: Performance</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for usages of "new" for wrapper classes which should use "valueOf" instead.</div>
+<div class="explanation">
+You should not call the constructor for wrapper classes directly, such as"new Integer(42)". Instead, call the "valueOf" factory method, such as Integer.valueOf(42). This will typically use less memory because common integers such as 0 and 1 will share a single instance.
+</div>
+<br/>To suppress this error, use the issue id "UseValueOf" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="UnusedResources"></a>
+<div class="issue">
+<div class="id">UnusedResources<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Cvalues%5Cstrings.xml">res\values\strings.xml</a>:3</span>: <span class="message">The resource R.string.hello appears to be unused</span><br /><pre class="errorlines">
+<span class="lineno">   1</span> &lt;?xml version="1.0" encoding="utf-8"?>
+<span class="lineno">   2</span> &lt;resources>
+<span class="lineno">   3</span>     <span class="errorspan">&lt;string name="hello">Hello World, AndroidConverterActivity!&lt;/string></span>
+<span class="lineno">   4</span>     &lt;string name="app_name">AndroidConverter&lt;/string>
+<span class="lineno">   5</span> &lt;/resources>
+</pre>
+</div>
+<div class="metadata">Priority: 3 / 10<br/>
+Category: Performance</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for unused resources.</div>
+<div class="explanation">
+Unused resources make applications larger and slow down builds.
+</div>
+<br/>To suppress this error, use the issue id "UnusedResources" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+<a name="Usability:Icons"></a>
+<div class="category">Usability:Icons<div class="categorySeparator"></div>
+</div>
+<a name="IconMissingDensityFolder"></a>
+<div class="issue">
+<div class="id">IconMissingDensityFolder<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res">res</a></span>: <span class="message">Missing density variation folders in res: drawable-xhdpi</span><br />
+</div>
+<div class="metadata">Priority: 3 / 10<br/>
+Category: Usability:Icons</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Ensures that all the density folders are present.</div>
+<div class="explanation">
+Icons will look best if a custom version is provided for each of the major screen density classes (low, medium, high, extra high). This lint check identifies folders which are missing, such as drawable-hdpi.<br/>Low density is not really used much anymore, so this check ignores the ldpi density. To force lint to include it, set the environment variable ANDROID_LINT_INCLUDE_LDPI=true. For more information on current density usage, see http://developer.android.com/resources/dashboard/screens.html
+</div>
+<br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/practices/screens_support.html">http://developer.android.com/guide/practices/screens_support.html</a></div>
+<br/>To suppress this error, use the issue id "IconMissingDensityFolder" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+<a name="Internationalization"></a>
+<div class="category">Internationalization<div class="categorySeparator"></div>
+</div>
+<a name="HardcodedText"></a>
+<div class="issue">
+<div class="id">HardcodedText<div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:10</span>: <span class="message">[I18N] Hardcoded string "Kmh", should use @string resource</span><br /><pre class="errorlines">
+<span class="lineno">   7</span>    &lt;TextView 
+<span class="lineno">   8</span>      android:id="@+id/textKmPerHour"
+<span class="lineno">   9</span>      android:layout_width="wrap_content" 
+<span class="lineno">  10</span>      android:layout_height="wrap_content" <span class="errorspan">android:text="Kmh"/></span>
+<span class="lineno">  11</span>    &lt;EditText 
+<span class="lineno">  12</span>      android:layout_height="wrap_content" 
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:22</span>: <span class="message">[I18N] Hardcoded string "Convert To Ms", should use @string resource</span><br /><pre class="errorlines">
+<span class="lineno">  19</span>    	 android:layout_height="wrap_content" 
+<span class="lineno">  20</span>    	 android:layout_width="wrap_content" 
+<span class="lineno">  21</span>    	 android:clickable="true" 
+<span class="lineno">  22</span>    	 android:id="@+id/ConvToMs" <span class="errorspan">android:text="Convert To Ms" android:onClick="@android:string/ok">&lt;/Button></span>
+<span class="lineno">  23</span>    &lt;TextView 
+<span class="lineno">  24</span>    	 android:paddingTop="4dp" 
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:27</span>: <span class="message">[I18N] Hardcoded string "Ms", should use @string resource</span><br /><pre class="errorlines">
+<span class="lineno">  24</span>    	 android:paddingTop="4dp" 
+<span class="lineno">  25</span>    	 android:id="@+id/textMetersPerSec" 
+<span class="lineno">  26</span>    	 android:layout_height="wrap_content" 
+<span class="lineno">  27</span>    	 android:layout_width="wrap_content" <span class="errorspan">android:text="Ms">&lt;/TextView></span>
+<span class="lineno">  28</span>    &lt;EditText 
+<span class="lineno">  29</span>    	 android:layout_height="wrap_content" 
+</pre>
+<span class="location"><a href="https://github.com/Alkazar250/AndroidConverter/tree/master/AndroidConverter/res%5Clayout%5Cmain.xml">res\layout\main.xml</a>:38</span>: <span class="message">[I18N] Hardcoded string "Convert To Km/h", should use @string resource</span><br /><pre class="errorlines">
+<span class="lineno">  35</span>    	 android:layout_height="wrap_content" 
+<span class="lineno">  36</span>    	 android:layout_width="wrap_content" 
+<span class="lineno">  37</span>    	 android:clickable="true" 
+<span class="lineno">  38</span>    	 android:id="@+id/ConvToKmh" <span class="errorspan">android:text="Convert To Km/h" android:onClick="@android:string/ok">&lt;/Button></span>
+<span class="lineno">  39</span> &lt;/LinearLayout>
+
+</pre>
+</div>
+<div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img border="0" align="top" src="report_files/lint-run.png" />
+<br>
+Priority: 5 / 10<br/>
+Category: Internationalization</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for hardcoded text attributes which should be converted to resource lookup.</div>
+<div class="explanation">
+Hardcoding text attributes directly in layout files is bad for several reasons:<br/><br/>* When creating configuration variations (for example for landscape or portrait)you have to repeat the actual text (and keep it up to date when making changes)<br/><br/>* The application cannot be translated to other languages by just adding new translations for existing string resources.
+</div>
+<br/>To suppress this error, use the issue id "HardcodedText" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+<a name="MissingIssues"></a>
+<div class="category">Disabled Checks<div class="categorySeparator"></div>
+</div>
+The following issues were not run by lint, either because the check is not enabled by default, or because it was disabled with a command line flag or via one or more lint.xml configuration files in the project directories.
+<br/><br/>
+<a name="BackButton"></a>
+<div class="issue">
+<div class="id">BackButton<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+Priority: 6 / 10<br/>
+Category: Usability</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for Back buttons, which are not common on the Android platform.</div>
+<div class="explanation">
+According to the Android Design Guide,<br/><br/>"Other platforms use an explicit back button with label to allow the user to navigate up the application's hierarchy. Instead, Android uses the main action bar's app icon for hierarchical navigation and the navigation bar's back button for temporal navigation."<br/>This check is not very sophisticated (it just looks for buttons with the label "Back"), so it is disabled by default to not trigger on common scenarios like pairs of Back/Next buttons to paginate through screens.
+</div>
+<br/><div class="moreinfo">More info: <a href="http://developer.android.com/design/patterns/pure-android.html">http://developer.android.com/design/patterns/pure-android.html</a></div>
+<br/>To suppress this error, use the issue id "BackButton" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="FieldGetter"></a>
+<div class="issue">
+<div class="id">FieldGetter<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+Priority: 4 / 10<br/>
+Category: Performance</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Suggests replacing uses of getters with direct field access within a class.</div>
+<div class="explanation">
+Accessing a field within the class that defines a getter for that field is at least 3 times faster than calling the getter. For simple getters that do nothing other than return the field, you might want to just reference the local field directly instead.
+</div>
+<br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/practices/design/performance.html#internal_get_set">http://developer.android.com/guide/practices/design/performance.html#internal_get_set</a></div>
+<br/>To suppress this error, use the issue id "FieldGetter" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="IconExpectedSize"></a>
+<div class="issue">
+<div class="id">IconExpectedSize<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+Priority: 5 / 10<br/>
+Category: Usability:Icons</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Ensures that launcher icons, notification icons etc have the correct size.</div>
+<div class="explanation">
+There are predefined sizes (for each density) for launcher icons. You should follow these conventions to make sure your icons fit in with the overall look of the platform.
+</div>
+<br/><div class="moreinfo">More info: <a href="http://developer.android.com/design/style/iconography.html">http://developer.android.com/design/style/iconography.html</a></div>
+<br/>To suppress this error, use the issue id "IconExpectedSize" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="TypographyQuotes"></a>
+<div class="issue">
+<div class="id">TypographyQuotes<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img border="0" align="top" src="report_files/lint-run.png" />
+<br>
+Disabled By: Default<br/>
+Priority: 5 / 10<br/>
+Category: Usability:Typography</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for straight quotes which can be replaced by curvy quotes.</div>
+<div class="explanation">
+Straight single quotes and double quotes, when used as a pair, can be replaced by "curvy quotes" (or directional quotes). This can make the text more readable.<br/><br/>Note that you should never use grave accents and apostrophes to quote, `like this'.<br/><br/>(Also note that you should not use curvy quotes for code fragments.)
+</div>
+<br/><div class="moreinfo">More info: <a href="http://en.wikipedia.org/wiki/Quotation_mark">http://en.wikipedia.org/wiki/Quotation_mark</a></div>
+<br/>To suppress this error, use the issue id "TypographyQuotes" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div><a name="UnusedIds"></a>
+<div class="issue">
+<div class="id">UnusedIds<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Default<br/>
+Priority: 1 / 10<br/>
+Category: Performance</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for unused id's.</div>
+<div class="explanation">
+This resource id definition appears not to be needed since it is not referenced from anywhere. Having id definitions, even if unused, is not necessarily a bad idea since they make working on layouts and menus easier, so there is not a strong reason to delete these.
+</div>
+<br/>To suppress this error, use the issue id "UnusedIds" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+<a name="SuppressInfo"></a>
+<div class="category">Suppressing Warnings and Errors<div class="categorySeparator"></div>
+</div>
+Lint errors can be suppressed in a variety of ways:<br/><br/>1. With a @SuppressLint annotation in the Java code<br/>2. With a tools:ignore attribute in the XML file<br/>3. With a lint.xml configuration file in the project<br/>4. With a lint.xml configuration file passed to lint via the --config flag<br/>5. With the --ignore flag passed to lint.<br/><br/>To suppress a lint warning with an annotation, add a @SuppressLint("id") annotation on the class, method or variable declaration closest to the warning instance you want to disable. The id can be one or more issue id's, such as "UnusedResources" or {"UnusedResources","UnusedIds"}, or it can be "all" to suppress all lint warnings in the given scope.<br/><br/>To suppress a lint warning in an XML file, add a tools:ignore="id" attribute on the element containing the error, or one of its surrounding elements. You also need to define the namespace for the tools prefix on the root element in your document, next to the xmlns:android declaration:<br/>* xmlns:tools="http://schemas.android.com/tools"<br/><br/>To suppress lint warnings with a configuration XML file, create a file named lint.xml and place it at the root directory of the project in which it applies. (If you use the Eclipse plugin's Lint view, you can suppress errors there via the toolbar and Eclipse will create the lint.xml file for you.).<br/><br/>The format of the lint.xml file is something like the following:<br/><br/>&lt;?xml version="1.0" encoding="UTF-8"?><br/>&lt;lint><br/>    &lt;!-- Disable this given check in this project --><br/>    &lt;issue id="IconMissingDensityFolder" severity="ignore" /><br/><br/>    &lt;!-- Ignore the ObsoleteLayoutParam issue in the given files --><br/>    &lt;issue id="ObsoleteLayoutParam"><br/>        &lt;ignore path="res/layout/activation.xml" /><br/>        &lt;ignore path="res/layout-xlarge/activation.xml" /><br/>    &lt;/issue><br/><br/>    &lt;!-- Ignore the UselessLeaf issue in the given file --><br/>    &lt;issue id="UselessLeaf"><br/>        &lt;ignore path="res/layout/main.xml" /><br/>    &lt;/issue><br/><br/>    &lt;!-- Change the severity of hardcoded strings to "error" --><br/>    &lt;issue id="HardcodedText" severity="error" /><br/>&lt;/lint><br/><br/>To suppress lint checks from the command line, pass the --ignore flag with a comma separated list of ids to be suppressed, such as:<br/>"lint --ignore UnusedResources,UselessLeaf /my/project/path"<br/>
+
+</body>
+</html>
